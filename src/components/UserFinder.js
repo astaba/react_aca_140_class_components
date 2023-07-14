@@ -1,12 +1,7 @@
 import React, { Component, Fragment } from "react";
 import classes from "./UserFinder.module.css";
 import Users from "./Users";
-
-const PLACEHOLDER_USERS = [
-  { id: "u1", name: "Max" },
-  { id: "u2", name: "Manuel" },
-  { id: "u3", name: "Julie" },
-];
+import usersContext from "../context/users-context";
 
 export class UserFinder extends Component {
   constructor(props) {
@@ -14,8 +9,14 @@ export class UserFinder extends Component {
 
     this.state = {
       search: "",
-      filteredList: PLACEHOLDER_USERS,
+      filteredList: [],
     };
+  }
+
+  static contextType = usersContext;
+
+  componentDidMount() {
+    this.setState({ filteredList: this.context.users });
   }
 
   handleSearchChange = (event) => {
@@ -25,7 +26,7 @@ export class UserFinder extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.search !== this.state.search) {
       this.setState({
-        filteredList: PLACEHOLDER_USERS.filter((item) =>
+        filteredList: this.context.users.filter((item) =>
           item.name.toLowerCase().includes(this.state.search.toLowerCase())
         ),
       });
