@@ -3,12 +3,6 @@ import User from "./User";
 
 import classes from "./Users.module.css";
 
-// const DUMMY_USERS = [
-//   { id: "u1", name: "Max" },
-//   { id: "u2", name: "Manuel" },
-//   { id: "u3", name: "Julie" },
-// ];
-
 class Users extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +10,6 @@ class Users extends Component {
     this.state = {
       areUsersShown: true,
     };
-    // this.toggleDisplay = this.toggleDisplay.bind(this);
   }
 
   toggleDisplay = () => {
@@ -29,7 +22,6 @@ class Users extends Component {
     const { areUsersShown } = this.state;
     const usersList = (
       <ul>
-        {/* {DUMMY_USERS.map((user) => ( */}
         {this.props.list.map((user) => (
           <User key={user.id} name={user.name} />
         ))}
