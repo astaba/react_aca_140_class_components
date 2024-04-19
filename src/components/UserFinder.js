@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import classes from "./UserFinder.module.css";
 import Users from "./Users";
 import { withUsersConsumer } from "../context/users-context";
+import ErrorBoundary from "../error-boundary/ErrorBoundary";
 
 export class UserFinder extends Component {
   constructor(props) {
@@ -38,7 +39,9 @@ export class UserFinder extends Component {
             onChange={this.handleSearchChange}
           />
         </div>
-        <Users list={filteredList} />
+        <ErrorBoundary>
+          <Users list={filteredList} />
+        </ErrorBoundary>
       </Fragment>
     );
   }

@@ -16,7 +16,13 @@ class Users extends Component {
     this.setState((prevState) => ({
       areUsersShown: !prevState.areUsersShown,
     }));
-  }
+  };
+  // Create an Error to test ErrorBoundary component
+  // componentDidUpdate() {
+  //   if(this.props.list.length === 0) {
+  //     throw new Error("No list provided!")
+  //   }
+  // }
 
   render() {
     const { areUsersShown } = this.state;
